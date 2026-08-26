@@ -1,0 +1,14 @@
+{
+  "buildCommand": "pip install -r requirements‑docs.txt && python scripts/build‑docs‑tree.py && mkdocs build",
+  "outputDirectory": "_build/site",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache‑Control", "value": "public, max‑age=31536000, immutable" }
+      ]
+    }
+  ]
+}

@@ -12,31 +12,26 @@
   <div id="app">文档加载中...</div>
 
   <script>
-    window.$docsify = {
-      // 左上角站点名称，可修改
-      name: '我的文档库',
-      // 右上角GitHub跳转地址，不需要就注释掉
-      // repo: 'https://github.com/你的用户名/仓库名',
-
-      // ==========侧边栏配置==========
-      loadSidebar: true,        // 开启侧边栏，读取根目录 _sidebar.md
-      subMaxLevel: 3,           // 把md内部h1~h3标题自动展开到侧边栏
-      alias: {
-        '/.*/_sidebar.md': '/_sidebar.md' //全部子目录统一使用根目录的侧边栏
-      },
-
-      auto2top: true,           //切换页面自动滚动到顶部
-      mergeNavbar: true,        //手机端把导航合并进侧边栏
-
-      // ==========全文搜索配置（中文）==========
-      search: {
-        paths: 'auto',          //自动扫描全部md文档建立搜索索引
-        maxAge: 86400000,       //搜索缓存有效期1天(毫秒)
-        placeholder: '🔍站内搜索文档',
-        noData: '没有匹配结果',
-        depth: 6
-      }
-    }
+window.$docsify = {
+  name: '我的文档库',
+  loadSidebar: true,
+  subMaxLevel: 3,
+  // ============强制指定首页文件============
+  homepage: 'README.md',
+  // =========================================
+  alias: {
+    '/.*/_sidebar.md': '/_sidebar.md'
+  },
+  auto2top: true,
+  mergeNavbar: true,
+  search: {
+    paths: 'auto',
+    maxAge: 86400000,
+    placeholder: '🔍站内搜索文档',
+    noData: '没有匹配结果',
+    depth: 6
+  }
+}
   </script>
 
   <!-- docsify核心库 -->

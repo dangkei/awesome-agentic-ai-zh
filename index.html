@@ -16,12 +16,14 @@ window.$docsify = {
   name: '我的文档库',
   loadSidebar: true,
   subMaxLevel: 3,
-  // ============强制指定首页文件============
   homepage: 'README.md',
-  // =========================================
+
+  // ✅ 这里放 alias，和其他配置平级
   alias: {
+    '/index': '/index.md',
     '/.*/_sidebar.md': '/_sidebar.md'
   },
+
   auto2top: true,
   mergeNavbar: true,
   search: {

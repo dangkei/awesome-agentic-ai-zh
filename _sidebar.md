@@ -1,5 +1,5 @@
 <!-- _sidebar.md 侧边导航菜单 -->
-* [首页](/README.md)
+* [首页](/)
 * [快速上手](quickstart.md)
 * [配置说明](config.md)
 

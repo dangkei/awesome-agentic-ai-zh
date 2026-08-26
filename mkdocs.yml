@@ -1,15 +1,14 @@
 site_name: awesome-agentic-ai-zh
-site_description: A trilingual learning roadmap for agentic AI (English / 繁中 / 简中) — 8 stages from LLM basics to multi-agent systems, with hands-on exercises and curated projects.
-site_url: https://wenyuchiou.github.io/awesome-agentic-ai-zh/
-repo_url: https://github.com/WenyuChiou/awesome-agentic-ai-zh
-repo_name: WenyuChiou/awesome-agentic-ai-zh
+site_description: A trilingual learning roadmap for agentic AI (English / 繁中 / 简中) — 8 stages from LLM basics to multi‑agent systems, with hands‑on exercises and curated projects.
+site_url: https://dangkei.github.io/awesome‑agentic‑ai‑zh/
+repo_url: https://github.com/dangkei/awesome‑agentic‑ai‑zh
+repo_name: dangkei/awesome‑agentic‑ai‑zh
 edit_uri: edit/main/
 
-# Content lives at the REPO ROOT (stages/ tracks/ branches/ resources/
-# + root *.md), not a docs/ subfolder. mkdocs forbids docs_dir being
-# the parent of mkdocs.yml, so `scripts/build-docs-tree.py` stages the
-# whitelisted content into _build/docs/ first (run it before `mkdocs
-# build` — the GitHub Actions workflow does this automatically).
+# ⚠️重要：源md文件在仓库根目录(stages/ tracks/ resources/ *.md)
+# mkdocs不允许docs_dir为mkdocs.yml的父目录，所以用脚本复制到临时目录 _build/docs
+# 本地运行顺序：python scripts/build‑docs‑tree.py → mkdocs serve / mkdocs build
+# GitHub Actions workflow 会自动执行这套流程
 docs_dir: _build/docs
 site_dir: _build/site
 
@@ -22,7 +21,7 @@ exclude_docs: |
 
 theme:
   name: material
-  language: zh-TW
+  language: zh‑TW
   features:
     - navigation.tabs
     - navigation.top
@@ -41,19 +40,19 @@ theme:
     - content.tooltips
     - toc.follow
   palette:
-    - media: "(prefers-color-scheme: light)"
+    - media: "(prefers‑color‑scheme: light)"
       scheme: default
       primary: indigo
       accent: indigo
       toggle:
-        icon: material/weather-night
+        icon: material/weather‑night
         name: 切換深色 / Dark mode
-    - media: "(prefers-color-scheme: dark)"
+    - media: "(prefers‑color‑scheme: dark)"
       scheme: slate
       primary: indigo
       accent: indigo
       toggle:
-        icon: material/weather-sunny
+        icon: material/weather‑sunny
         name: 切換淺色 / Light mode
 
 plugins:
@@ -64,7 +63,7 @@ plugins:
       reconfigure_material: true
       reconfigure_search: true
       languages:
-        - locale: zh-TW
+        - locale: zh‑TW
           default: true
           name: 繁體中文
           build: true
@@ -86,7 +85,7 @@ plugins:
             實作: Walkthroughs
             資源: Resources
             貢獻: Contributing
-        - locale: zh-Hans
+        - locale: zh‑Hans
           name: 简体中文
           build: true
           nav_translations:
@@ -104,33 +103,14 @@ plugins:
             實作: 实作
             資源: 资源
             貢獻: 贡献
-          # Material ships no `zh-Hans.html` UI partial (it predates strict
-          # BCP-47 — uses `zh` for Simplified). Map this locale's chrome to
-          # Material's `zh`. Applied via apply_user_overrides (runs AFTER
-          # the plugin's forced language=locale, so this wins).
-          theme:
-            language: zh
+          # 注意：material官方没有zh‑Hans语言包，使用hooks脚本覆盖为zh简体UI
+          # 不要在这里写 theme.language:zh，会被i18n插件内部逻辑覆盖，由scripts/mkdocs_hooks.py处理
 
 markdown_extensions:
   - admonition
   - attr_list
   - md_in_html
   - tables
-  # slugify: python-markdown's default strips non-ASCII, so every CJK heading
-  # ("### Loop Engineering（迴圈工程）") rendered as id="loop-engineering" while
-  # GitHub — and scripts/check-anchors.py, which validates against GitHub's
-  # github-slugger rules — produce "loop-engineering迴圈工程". The two disagreed
-  # on 151 distinct fragments: the gate stayed green while those jump-links were
-  # dead on the published site. Emoji-prefixed ASCII headings diverged too, since
-  # GitHub keeps the leading separator that python-markdown strips.
-  # pymdownx's slugify(case="lower") reproduces check-anchors.py's output exactly
-  # on every heading in this repo (4344 real headings), so the SITE and the GATE
-  # now share one rule. GitHub is aligned too except for one documented case:
-  # it preserves U+FE0F where both of these strip it, so a heading carrying a
-  # variation selector has no fragment that works in both. That is guarded
-  # separately — a linked-to heading may not contain one.
-  # All of this is pinned by scripts/test_anchor_slug_parity.py; do not change
-  # this block without running it.
   - toc:
       permalink: true
       slugify: !!python/object/apply:pymdownx.slugs.slugify
@@ -144,9 +124,6 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
-# Build-time hooks. mkdocs_hooks.on_page_markdown strips the README's
-# GitHub-only inline language switcher (its ./README.*.md links 404
-# on the rendered site; Material's header selector is the in-site one).
 hooks:
   - scripts/mkdocs_hooks.py
 
@@ -157,32 +134,32 @@ nav:
   - 進度: PROGRESS.md
   - 結業專題: CAPSTONE.md
   - 路線圖: ROADMAP.md
-  - 書本版: https://wenyuchiou.github.io/awesome-agentic-ai-zh/book/
+  - 書本版: https://dangkei.github.io/awesome‑agentic‑ai‑zh/book/
   - 共用基礎:
-      - Stage 0 — Foundations: stages/00-foundations.md
-      - Stage 1 — LLM Basics: stages/01-llm-basics.md
-      - Stage 2 — Prompt Engineering: stages/02-prompt-engineering.md
+      - Stage 0 — Foundations: stages/00‑foundations.md
+      - Stage 1 — LLM Basics: stages/01‑llm‑basics.md
+      - Stage 2 — Prompt Engineering: stages/02‑prompt‑engineering.md
   - Track A — CLI:
-      - A1 — CLI Intro: tracks/cli/A1-cli-intro.md
-      - A2 — CLI Workflow: tracks/cli/A2-cli-workflow.md
-      - A3 — CLI Production: tracks/cli/A3-cli-production.md
+      - A1 — CLI Intro: tracks/cli/A1‑cli‑intro.md
+      - A2 — CLI Workflow: tracks/cli/A2‑cli‑workflow.md
+      - A3 — CLI Production: tracks/cli/A3‑cli‑production.md
   - Track B — Agent:
-      - Stage 3 — Tool Use & Hello Agent: stages/03-tool-use-and-hello-agent.md
-      - Stage 4 — Agent Frameworks: stages/04-agent-frameworks.md
-      - Stage 5 — Claude Code Ecosystem: stages/05-claude-code-ecosystem.md
-      - Stage 6 — Memory & RAG: stages/06-memory-rag.md
-      - Stage 7 — Multi-Agent: stages/07-multi-agent-production.md
-      - Stage 7.5 — Advanced Agentic: stages/07.5-advanced-agentic-concepts.md
-      - Stage 8 — Agent Interfaces: stages/08-agent-interfaces.md
+      - Stage 3 — Tool Use & Hello Agent: stages/03‑tool‑use‑and‑hello‑agent.md
+      - Stage 4 — Agent Frameworks: stages/04‑agent‑frameworks.md
+      - Stage 5 — Claude Code Ecosystem: stages/05‑claude‑code‑ecosystem.md
+      - Stage 6 — Memory & RAG: stages/06‑memory‑rag.md
+      - Stage 7 — Multi‑Agent: stages/07‑multi‑agent‑production.md
+      - Stage 7.5 — Advanced Agentic: stages/07.5‑advanced‑agentic‑concepts.md
+      - Stage 8 — Agent Interfaces: stages/08‑agent‑interfaces.md
   - 讀者分流:
       - Branch design: branches/DESIGN.md
-      - for-researcher: branches/for-researcher.md
-      - for-developer: branches/for-developer.md
-      - for-teacher: branches/for-teacher.md
-      - for-knowledge-worker: branches/for-knowledge-worker.md
-      - for-everyday-users: branches/for-everyday-users.md
+      - for‑researcher: branches/for‑researcher.md
+      - for‑developer: branches/for‑developer.md
+      - for‑teacher: branches/for‑teacher.md
+      - for‑knowledge‑worker: branches/for‑knowledge‑worker.md
+      - for‑everyday‑users: branches/for‑everyday‑users.md
   - 實作:
-      - Build your first agent in 7 steps: walkthroughs/build-first-agent-in-7-steps.md
+      - Build your first agent in 7 steps: walkthroughs/build‑first‑agent‑in‑7‑steps.md
   - 資源: RESOURCES.md
   - 貢獻:
       - Contributing guide: CONTRIBUTING.md

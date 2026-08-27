@@ -1,0 +1,40 @@
+name: 构建静态HTML站点
+#触发时机：推送到main分支的时候自动运行
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-website:
+    runs-on: ubuntu-latest   #使用Ubuntu云环境，完美兼容mkdocs‑i18n插件
+
+    steps:
+      #1、拉取你仓库全部源代码
+      - name: 检出仓库代码
+        uses: actions/checkout@v4
+
+      #2、安装Python 3.12
+      - name: 设置Python环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+
+      #3、安装项目全部依赖包
+      - name: 安装依赖 MkDocs、i18n等
+        run: pip install -r requirements-docs.txt
+
+      #4、运行预处理脚本，生成 _build/docs
+      - name: 运行预处理脚本 build-docs-tree.py
+        run: python scripts/build-docs-tree.py
+
+      #5、执行mkdocs编译，生成纯HTML网站输出至 _build/site
+      - name: MkDocs 构建静态网页
+        run: mkdocs build
+
+      #6、打包生成的网站，作为下载工件保存
+      - name: 上传生成好的静态网站产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: awesome-agentic-static-site
+          path: ./_build/site

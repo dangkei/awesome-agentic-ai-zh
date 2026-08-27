@@ -63,7 +63,7 @@ plugins:
       reconfigure_material: true
       reconfigure_search: true
       languages:
-        - locale: zh_TW
+        - locale: zh-TW
           default: true
           name: 繁體中文
           build: true
@@ -85,7 +85,7 @@ plugins:
             實作: Walkthroughs
             資源: Resources
             貢獻: Contributing
-        - locale: zh_CN
+        - locale: zh-CN
           name: 简体中文
           build: true
           nav_translations:

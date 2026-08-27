@@ -21,7 +21,7 @@ exclude_docs: |
 
 theme:
   name: material
-  language: zh‑TW
+  language: zh-TW
   features:
     - navigation.tabs
     - navigation.top
@@ -63,7 +63,7 @@ plugins:
       reconfigure_material: true
       reconfigure_search: true
       languages:
-        - locale: zh‑TW
+        - locale: zh_TW
           default: true
           name: 繁體中文
           build: true
@@ -85,7 +85,7 @@ plugins:
             實作: Walkthroughs
             資源: Resources
             貢獻: Contributing
-        - locale: zh‑Hans
+        - locale: zh_Hans
           name: 简体中文
           build: true
           nav_translations:

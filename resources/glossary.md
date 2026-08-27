@@ -56,6 +56,16 @@ GPT、Claude、Gemini 這類「給文字、回文字」的模型。本身是純�
 
 📍 詳細：[Stage 1](../stages/01-llm-basics.md)
 
+### Model Provider / Provider API（模型供應商／模型 API）
+
+**直接通往模型公司的門。** 例如 Anthropic API、OpenAI API、Gemini API。你選模型、送出 prompt，供應商回傳結果並向你計費。它提供模型服務，但不是會讀寫你電腦檔案的 CLI agent。
+
+### LLM Router / API Router（模型路由器）
+
+**一個入口，替你轉接多家模型或多個後端。** [OpenRouter](https://openrouter.ai/docs/faq) 是例子：同一個 API 與帳務入口可以選不同模型，並依設定處理 provider routing 或 fallback。Router 不是模型，也不是 OpenCode、Pi 這類 coding agent。
+
+📍 五種身分對照：[Track A A1](../tracks/cli/A1-cli-intro.md)
+
 ### Token
 
 LLM 看到的不是「字」，是 **token**（次字單位）。中文 1 個字 ≈ 1.5-2 token，英文 1 個 word ≈ 1.3 token。LLM 計費跟 context window 都以 token 計。「100 萬 token context」≈ 75 萬中文字。
@@ -78,16 +88,16 @@ LLM 一次能「看」多少 token。**2026 frontier**：Claude Sonnet 5 / Opus 
 
 - **Zero-shot**（0 個範例）：直接問、不給任何範例。
 - **One-shot**（1 個範例）：先給 **1 個** input → output 範例再問。
-- **Few-shot**（少數幾個）：給 **2-5 個** input → output 範例後再問。**Few-shot 通常顯著提升準確度**，特別是格式要求嚴的任務。
+- **Few-shot**（少數幾個）：給 **2-5 個** input → output 範例後再問。它能展示格式與邊界案例，但是否變好仍要用固定 eval 檢查。
 
 ### Chain-of-Thought（CoT，思維鏈）
 
-要 LLM「先想再答」——讓它輸出推理過程再給結論。**兩種形式**：
+早期 prompting 技巧會要求 LLM 寫出中間推理，再給答案。常見研究形式有兩種：
 
 - **Few-shot CoT**（原始 paper、[Wei et al. 2022](https://arxiv.org/abs/2201.11903)）：在 prompt 裡放幾個含推理步驟的範例、LLM 模仿著想
-- **Zero-shot CoT**（[Kojima et al. 2022](https://arxiv.org/abs/2205.11916)）：prompt 結尾加「Let's think step by step」就觸發 reasoning trace
+- **Zero-shot CoT**（[Kojima et al. 2022](https://arxiv.org/abs/2205.11916)）：在 prompt 結尾加「Let's think step by step」。
 
-**準確度通常會提升**、代價是 token 數變多。Few-shot 通常比 zero-shot 準。
+現在不要把輸出完整思維鏈當成通用要求。推理模型通常會在內部完成推理；需要核對時，要求**最後答案加一段簡短、可驗證的理由**。哪種寫法較好，必須用同一組 eval 比較。
 
 ---
 
@@ -275,7 +285,7 @@ Claude Code 的「行為包」。一個 Skill = 一個資料夾含 `SKILL.md`（
 
 ### Slash Command
 
-Claude Code 內以 `/` 開頭的指令（`/help`、`/compact`、`/plan` 等）。可以自訂——把一段 prompt 存到 `.claude/commands/<name>.md` 就變成 `/name`。
+Claude Code 內以 `/` 開頭的指令，例如 `/help`、`/compact`、`/plan`。舊專案可能把自訂 prompt 放在 `.claude/commands/<name>.md`；這是相容舊做法。新的可重用流程建議寫成 `.claude/skills/<name>/SKILL.md`。
 
 ### CLAUDE.md
 
@@ -313,11 +323,11 @@ Claude Code 內以 `/` 開頭的指令（`/help`、`/compact`、`/plan` 等）�
 
 ## 6. Production / Eval / Cost
 
-### Eval（評估框架）
+### Eval（評估）
 
-針對 agent 跑一組 test case，量化它的準確度 / latency / cost。**production agent 沒有 eval 等於沒有測試**。常見工具：promptfoo、LangSmith、langfuse evals。
+拿一組固定 test case 檢查 prompt 或 agent。最小的 eval 就像一張小答案卡：同一組題目、清楚的正確條件、每次修改後重跑。規模變大後，還能一起記錄準確度、latency 與 cost。常見工具有 promptfoo、LangSmith 與 Langfuse evals。
 
-📍 詳細：[Stage 7](../stages/07-multi-agent-production.md)
+📍 入門：[Stage 2](../stages/02-prompt-engineering.md)；完整 eval harness：[Stage 7](../stages/07-multi-agent-production.md)
 
 ### Observability
 
@@ -359,17 +369,17 @@ Simon Willison 提出：agent 同時有（1）存取私密資料、（2）接觸
 
 ### CLI Agent
 
-跑在終端機的 agent（Claude Code、Codex、Aider、Gemini CLI 等）。對比於跑在 IDE 內（Cursor、Continue）或 web 上（ChatGPT、Claude.ai）。
+跑在終端機、能在你允許的範圍內讀檔、改檔與執行命令的 agent / harness（Claude Code、Codex、OpenCode、Pi、Aider、Gemini CLI 等）。**它是工作台，不是裡面的 LLM。** 同一個 CLI 可能綁一個模型生態，也可能讓你切換 provider。
 
 📍 詳細：[Track A A1](../tracks/cli/A1-cli-intro.md)、[`resources/cli-agents-guide.md`](cli-agents-guide.md)
 
 ### BYO API Key（Bring Your Own）
 
-工具支援你自己提供 API key 而不是綁訂閱。Aider / OpenCode / goose 等 CLI 都是 BYO；Claude Code / Codex 預設是訂閱制。
+工具讓你提供自己的 provider API key，而不是只使用工具內建的訂閱登入。Aider、OpenCode、goose、Pi 等可以接一個或多個 provider；Claude Code、Codex 也各有官方文件列出的訂閱或 API 認證路徑。實際支援方式會改，使用前看該工具的官方認證文件。
 
 ### Local LLM / On-Device
 
-模型跑在你自己機器上（Ollama、llama.cpp、MLX、LocalAI 等），資料不外傳。隱私 OK 但能力比 frontier 模型有差。
+模型在自己的機器上執行。Ollama、llama.cpp、MLX、LocalAI 是 **local runtime**：它們負責把模型跑起來，不等於 coding agent。只有模型、工具與資料路徑都留在本機，而且沒有另外呼叫雲端服務時，資料才不會因這次流程送到雲端；能力與速度要用自己的任務和硬體測試。
 
 📍 詳細：[Stage 1](../stages/01-llm-basics.md)
 

@@ -1,0 +1,458 @@
+schema_version: 1
+
+# This is a ratchet, not a claim that every page has already been migrated.
+# Add one page only after its visible beginner path has been reviewed in all
+# three locales. Lower limits when a later edit makes a page easier to scan.
+forbidden_open_summary_terms:
+  zh-TW: [時間, 先備, 環境, 費用, 預算, 必修閱讀, 補充, 選修, 疑難排解, 排錯, 資源]
+  en: [time, prerequisite, environment, cost, budget, required reading, supplementary, optional, troubleshooting, resources]
+  zh-Hans: [时间, 先备, 环境, 费用, 预算, 必读, 补充, 选修, 疑难排解, 排错, 资源]
+
+pages:
+  - id: stage-00
+    canonical: stages/00-foundations.md
+    mirrors:
+      en: stages/00-foundations.en.md
+      zh-Hans: stages/00-foundations.zh-Hans.md
+    max_visible_chars:
+      zh-TW: 2125
+      en: 3493
+      zh-Hans: 2165
+    max_open_details: 0
+    required_visible_sections:
+      skip-check:
+        zh-TW:
+          heading: 何時可以跳過這個階段
+          anchor: 何時可以跳過這個階段
+        en:
+          heading: When to skip this stage
+          anchor: when-to-skip-this-stage
+        zh-Hans:
+          heading: 何时可以跳过这个阶段
+          anchor: 何时可以跳过这个阶段
+      main-practice:
+        zh-TW:
+          heading: "🛠 動手練習：做一個 GitHub 資料小工具"
+          anchor: -動手練習做一個-github-資料小工具
+        en:
+          heading: "🛠 Hands-on Practice: Build a Small GitHub Data Tool"
+          anchor: -hands-on-practice-build-a-small-github-data-tool
+        zh-Hans:
+          heading: "🛠 动手练习：做一个 GitHub 数据小工具"
+          anchor: -动手练习做一个-github-数据小工具
+      completion:
+        zh-TW:
+          heading: "✅ 完成檢查"
+          anchor: -完成檢查
+        en:
+          heading: "✅ Completion Check"
+          anchor: -completion-check
+        zh-Hans:
+          heading: "✅ 完成检查"
+          anchor: -完成检查
+    resource_group_rowspans: [5, 4, 3, 3, 3]
+    parity:
+      ordered_external_urls: true
+      resource_url_ratings: true
+
+  - id: stage-01
+    canonical: stages/01-llm-basics.md
+    mirrors:
+      en: stages/01-llm-basics.en.md
+      zh-Hans: stages/01-llm-basics.zh-Hans.md
+    max_visible_chars:
+      zh-TW: 6609
+      en: 10066
+      zh-Hans: 6601
+    max_open_details: 3
+    required_visible_sections:
+      exercise-4:
+        zh-TW:
+          heading: "練習 4：Cross-Provider 比較"
+          anchor: 練習-4cross-provider-比較
+        en:
+          heading: "Exercise 4: Cross-Provider Comparison"
+          anchor: exercise-4-cross-provider-comparison
+        zh-Hans:
+          heading: "练习 4：Cross-Provider 比较"
+          anchor: 练习-4cross-provider-比较
+      exercise-5:
+        zh-TW:
+          heading: "練習 5：Error Handling"
+          anchor: 練習-5error-handling
+        en:
+          heading: "Exercise 5: Error Handling"
+          anchor: exercise-5-error-handling
+        zh-Hans:
+          heading: "练习 5：Error Handling"
+          anchor: 练习-5error-handling
+      exercise-6:
+        zh-TW:
+          heading: "練習 6：Local LLM"
+          anchor: 練習-6local-llm
+        en:
+          heading: "Exercise 6: Local LLM"
+          anchor: exercise-6-local-llm
+        zh-Hans:
+          heading: "练习 6：Local LLM"
+          anchor: 练习-6local-llm
+    resource_group_rowspans: [4, 4, 2, 4, 3]
+
+  - id: stage-02
+    canonical: stages/02-prompt-engineering.md
+    mirrors:
+      en: stages/02-prompt-engineering.en.md
+      zh-Hans: stages/02-prompt-engineering.zh-Hans.md
+    max_visible_chars:
+      zh-TW: 2475
+      en: 4725
+      zh-Hans: 2525
+    max_open_details: 0
+    parity:
+      literals:
+        - "Zero-Shot"
+        - "One-Shot"
+        - "Few-Shot"
+        - "Chain-of-Thought"
+    required_visible_sections:
+      learning-goals:
+        zh-TW:
+          heading: "📌 學習目標"
+          anchor: -學習目標
+        en:
+          heading: "📌 Learning Goals"
+          anchor: -learning-goals
+        zh-Hans:
+          heading: "📌 学习目标"
+          anchor: -学习目标
+      required-reading:
+        zh-TW:
+          heading: "📚 必修閱讀"
+          anchor: -必修閱讀
+        en:
+          heading: "📚 Required Reading"
+          anchor: -required-reading
+        zh-Hans:
+          heading: "📚 必修阅读"
+          anchor: -必修阅读
+      hands-on:
+        zh-TW:
+          heading: "🛠 動手練習"
+          anchor: -動手練習
+        en:
+          heading: "🛠 Hands-on Exercises"
+          anchor: -hands-on-exercises
+        zh-Hans:
+          heading: "🛠 动手练习"
+          anchor: -动手练习
+      exercise-1:
+        zh-TW:
+          heading: "練習 1：System Prompt（把要求放進四格）"
+          anchor: 練習-1system-prompt把要求放進四格
+        en:
+          heading: "Exercise 1: System Prompt (put the request into four parts)"
+          anchor: exercise-1-system-prompt-put-the-request-into-four-parts
+        zh-Hans:
+          heading: "练习 1：System Prompt（把要求放进四部分）"
+          anchor: 练习-1system-prompt把要求放进四部分
+      exercise-2:
+        zh-TW:
+          heading: "練習 2：Few-Shot（給例子，再測同一組題目）"
+          anchor: 練習-2few-shot給例子再測同一組題目
+        en:
+          heading: "Exercise 2: Few-Shot (give examples, then test the same questions)"
+          anchor: exercise-2-few-shot-give-examples-then-test-the-same-questions
+        zh-Hans:
+          heading: "练习 2：Few-Shot（给范例，再测试同一组题目）"
+          anchor: 练习-2few-shot给范例再测试同一组题目
+      exercise-3:
+        zh-TW:
+          heading: "練習 3：Iterative Refinement（一次只改一件事）"
+          anchor: 練習-3iterative-refinement一次只改一件事
+        en:
+          heading: "Exercise 3: Iterative Refinement (change one thing at a time)"
+          anchor: exercise-3-iterative-refinement-change-one-thing-at-a-time
+        zh-Hans:
+          heading: "练习 3：Iterative Refinement（一次只改一件事）"
+          anchor: 练习-3iterative-refinement一次只改一件事
+      completion:
+        zh-TW:
+          heading: "✅ 進 Stage 3 前的自我檢查"
+          anchor: -進-stage-3-前的自我檢查
+        en:
+          heading: "✅ Self-Check Before Stage 3"
+          anchor: -self-check-before-stage-3
+        zh-Hans:
+          heading: "✅ 进入 Stage 3 前的自我检查"
+          anchor: -进入-stage-3-前的自我检查
+      projects:
+        zh-TW:
+          heading: "🎯 精選 Projects"
+          anchor: -精選-projects
+        en:
+          heading: "🎯 Curated Projects"
+          anchor: -curated-projects
+        zh-Hans:
+          heading: "🎯 精选 Projects"
+          anchor: -精选-projects
+    resource_group_rowspans: [5, 4, 4, 4, 1]
+
+  - id: track-a1
+    canonical: tracks/cli/A1-cli-intro.md
+    mirrors:
+      en: tracks/cli/A1-cli-intro.en.md
+      zh-Hans: tracks/cli/A1-cli-intro.zh-Hans.md
+    max_visible_chars:
+      zh-TW: 3900
+      en: 6400
+      zh-Hans: 4000
+    max_open_details: 0
+    required_visible_sections:
+      cli-1:
+        zh-TW:
+          heading: "動手練習 CLI-1：在 demo repo 內先讀取，再做一個可復原的小改動"
+          anchor: 動手練習-cli-1在-demo-repo-內先讀取再做一個可復原的小改動
+        en:
+          heading: "Hands-on CLI-1: Read the demo repo first, then make one reversible small change"
+          anchor: hands-on-cli-1-read-the-demo-repo-first-then-make-one-reversible-small-change
+        zh-Hans:
+          heading: "动手练习 CLI-1：在 demo repo 里先读取，再做一个可撤销的小改动"
+          anchor: 动手练习-cli-1在-demo-repo-里先读取再做一个可撤销的小改动
+      cli-2:
+        zh-TW:
+          heading: "動手練習 CLI-2：讓專案規則被正確讀到"
+          anchor: 動手練習-cli-2讓專案規則被正確讀到
+        en:
+          heading: "Hands-on CLI-2: Make sure the project rules are read correctly"
+          anchor: hands-on-cli-2-make-sure-the-project-rules-are-read-correctly
+        zh-Hans:
+          heading: "动手练习 CLI-2：让项目规则被正确读取"
+          anchor: 动手练习-cli-2让项目规则被正确读取
+      cli-3:
+        zh-TW:
+          heading: "動手練習 CLI-3：用第二個 harness 重跑同一個請求"
+          anchor: 動手練習-cli-3用第二個-harness-重跑同一個請求
+        en:
+          heading: "Hands-on CLI-3: Run the same request again with a second harness"
+          anchor: hands-on-cli-3-run-the-same-request-again-with-a-second-harness
+        zh-Hans:
+          heading: "动手练习 CLI-3：用第二个 harness 重跑同一个请求"
+          anchor: 动手练习-cli-3用第二个-harness-重跑同一个请求
+      cli-4:
+        zh-TW:
+          heading: "動手練習 CLI-4：用假憑證觀察認證失敗"
+          anchor: 動手練習-cli-4用假憑證觀察認證失敗
+        en:
+          heading: "Hands-on CLI-4: Observe authentication failure with fake credentials"
+          anchor: hands-on-cli-4-observe-authentication-failure-with-fake-credentials
+        zh-Hans:
+          heading: "动手练习 CLI-4：用假凭证观察认证失败"
+          anchor: 动手练习-cli-4用假凭证观察认证失败
+      completion:
+        zh-TW:
+          heading: "✅ 進 A2 前的自我檢查"
+          anchor: -進-a2-前的自我檢查
+        en:
+          heading: "✅ Self-check before A2"
+          anchor: -self-check-before-a2
+        zh-Hans:
+          heading: "✅ 进 A2 前的自我检查"
+          anchor: -进-a2-前的自我检查
+
+  - id: track-a2
+    canonical: tracks/cli/A2-cli-workflow.md
+    mirrors:
+      en: tracks/cli/A2-cli-workflow.en.md
+      zh-Hans: tracks/cli/A2-cli-workflow.zh-Hans.md
+    max_visible_chars:
+      zh-TW: 3000
+      en: 5000
+      zh-Hans: 3050
+    max_open_details: 0
+    required_visible_sections:
+      cli-5:
+        zh-TW:
+          heading: "動手練習 CLI-5：做一張最小專案規則卡"
+          anchor: 動手練習-cli-5做一張最小專案規則卡
+        en:
+          heading: "Hands-on exercise CLI-5: Make a minimal project-rules card"
+          anchor: hands-on-exercise-cli-5-make-a-minimal-project-rules-card
+        zh-Hans:
+          heading: "动手练习 CLI-5：做一张最小项目规则卡"
+          anchor: 动手练习-cli-5做一张最小项目规则卡
+      cli-6:
+        zh-TW:
+          heading: "動手練習 CLI-6：把重複 review 做成 Skill"
+          anchor: 動手練習-cli-6把重複-review-做成-skill
+        en:
+          heading: "Hands-on exercise CLI-6: Turn a repeated review into a Skill"
+          anchor: hands-on-exercise-cli-6-turn-a-repeated-review-into-a-skill
+        zh-Hans:
+          heading: "动手练习 CLI-6：把重复 review 做成 Skill"
+          anchor: 动手练习-cli-6把重复-review-做成-skill
+      cli-7:
+        zh-TW:
+          heading: "動手練習 CLI-7：把大任務切成看得見的小步驟"
+          anchor: 動手練習-cli-7把大任務切成看得見的小步驟
+        en:
+          heading: "Hands-on exercise CLI-7: Break a large task into visible small steps"
+          anchor: hands-on-exercise-cli-7-break-a-large-task-into-visible-small-steps
+        zh-Hans:
+          heading: "动手练习 CLI-7：把大任务拆成看得见的小步骤"
+          anchor: 动手练习-cli-7把大任务拆成看得见的小步骤
+      cli-8:
+        zh-TW:
+          heading: "動手練習 CLI-8：做一張 portable prompt 對照卡"
+          anchor: 動手練習-cli-8做一張-portable-prompt-對照卡
+        en:
+          heading: "Hands-on exercise CLI-8: Make a portable prompt comparison card"
+          anchor: hands-on-exercise-cli-8-make-a-portable-prompt-comparison-card
+        zh-Hans:
+          heading: "动手练习 CLI-8：做一张 portable prompt 对照卡"
+          anchor: 动手练习-cli-8做一张-portable-prompt-对照卡
+      completion:
+        zh-TW:
+          heading: "進 A3 前的自我檢查"
+          anchor: 進-a3-前的自我檢查
+        en:
+          heading: "Self-check before A3"
+          anchor: self-check-before-a3
+        zh-Hans:
+          heading: "进入 A3 前的自我检查"
+          anchor: 进入-a3-前的自我检查
+    resource_group_rowspans: [4, 4, 4, 2, 2]
+
+  - id: track-a3
+    canonical: tracks/cli/A3-cli-production.md
+    mirrors:
+      en: tracks/cli/A3-cli-production.en.md
+      zh-Hans: tracks/cli/A3-cli-production.zh-Hans.md
+    max_visible_chars:
+      zh-TW: 2850
+      en: 5300
+      zh-Hans: 2900
+    max_open_details: 0
+    required_details_count: 8
+    forbidden_terms:
+      zh-TW: [plan.yml, max_cost_usd, CLAUDE.zh-Hans.md, ★, ⭐, 1-2 分鐘, 1–2 分鐘]
+      en: [plan.yml, max_cost_usd, CLAUDE.zh-Hans.md, ★, ⭐, 1-2 minutes, 1–2 minutes]
+      zh-Hans: [plan.yml, max_cost_usd, CLAUDE.zh-Hans.md, ★, ⭐, 1-2 分钟, 1–2 分钟]
+    forbidden_terms_include_code: true
+    parity:
+      ordered_external_urls: true
+      literals:
+        - "2026-08-27"
+        - "2026-07-28"
+        - "--read-only"
+        - "pull_request_target"
+        - "GITHUB_TOKEN"
+        - 'permission-profile: ":read-only"'
+        - "@v1"
+        - "input tokens × input price + output tokens × output price"
+        - "provider spend limit"
+        - "job timeout"
+    required_visible_sections:
+      cli-9:
+        zh-TW:
+          heading: "動手練習 CLI-9：只連一個 MCP server"
+          anchor: 動手練習-cli-9只連一個-mcp-server
+        en:
+          heading: "Hands-on exercise CLI-9: Connect only one MCP server"
+          anchor: hands-on-exercise-cli-9-connect-only-one-mcp-server
+        zh-Hans:
+          heading: "动手练习 CLI-9：只连接一个 MCP server"
+          anchor: 动手练习-cli-9只连接一个-mcp-server
+      cli-10:
+        zh-TW:
+          heading: "動手練習 CLI-10：讓 PR 多一個只讀檢查員"
+          anchor: 動手練習-cli-10讓-pr-多一個只讀檢查員
+        en:
+          heading: "Hands-on exercise CLI-10: Give a PR one more read-only checker"
+          anchor: hands-on-exercise-cli-10-give-a-pr-one-more-read-only-checker
+        zh-Hans:
+          heading: "动手练习 CLI-10：让 PR 多一个只读检查员"
+          anchor: 动手练习-cli-10让-pr-多一个只读检查员
+      cli-11:
+        zh-TW:
+          heading: "動手練習 CLI-11：看一次執行的收據"
+          anchor: 動手練習-cli-11看一次執行的收據
+        en:
+          heading: "Hands-on exercise CLI-11: Read the receipt for one run"
+          anchor: hands-on-exercise-cli-11-read-the-receipt-for-one-run
+        zh-Hans:
+          heading: "动手练习 CLI-11：看一次运行的收据"
+          anchor: 动手练习-cli-11看一次运行的收据
+      cli-12:
+        zh-TW:
+          heading: "動手練習 CLI-12：把 Skill 安全交給隊友"
+          anchor: 動手練習-cli-12把-skill-安全交給隊友
+        en:
+          heading: "Hands-on exercise CLI-12: Safely hand a Skill to a teammate"
+          anchor: hands-on-exercise-cli-12-safely-hand-a-skill-to-a-teammate
+        zh-Hans:
+          heading: "动手练习 CLI-12：安全地把 Skill 交给队友"
+          anchor: 动手练习-cli-12安全地把-skill-交给队友
+      playbook-4:
+        zh-TW:
+          heading: "📋 Playbook 4：派遣 subagent 跑獨立任務"
+          anchor: -playbook-4派遣-subagent-跑獨立任務
+        en:
+          heading: "📋 Playbook 4: Dispatching subagents for independent tasks"
+          anchor: -playbook-4-dispatching-subagents-for-independent-tasks
+        zh-Hans:
+          heading: "📋 Playbook 4：派遣 subagent 跑独立任务"
+          anchor: -playbook-4派遣-subagent-跑独立任务
+      completion:
+        zh-TW:
+          heading: "Track A 完成檢查"
+          anchor: track-a-完成檢查
+        en:
+          heading: "Track A completion check"
+          anchor: track-a-completion-check
+        zh-Hans:
+          heading: "Track A 完成检查"
+          anchor: track-a-完成检查
+    resource_group_rowspans: [4, 5, 4, 3, 2]
+
+  - id: cli-agents-guide
+    canonical: resources/cli-agents-guide.md
+    mirrors:
+      en: resources/cli-agents-guide.en.md
+      zh-Hans: resources/cli-agents-guide.zh-Hans.md
+    max_visible_chars:
+      zh-TW: 2550
+      en: 4050
+      zh-Hans: 2600
+    max_open_details: 0
+    required_visible_sections:
+      comparison:
+        zh-TW:
+          heading: "9 個 CLI 工具"
+          anchor: 9-個-cli-工具
+        en:
+          heading: "9 CLI tools"
+          anchor: 9-cli-tools
+        zh-Hans:
+          heading: "9 个 CLI 工具"
+          anchor: 9-个-cli-工具
+      portable-prompt:
+        zh-TW:
+          heading: "Prompt 跨 CLI 搬移時保留四件事"
+          anchor: prompt-跨-cli-搬移時保留四件事
+        en:
+          heading: "Keep four things when moving a prompt between CLIs"
+          anchor: keep-four-things-when-moving-a-prompt-between-clis
+        zh-Hans:
+          heading: "Prompt 在 CLI 之间搬移时保留四件事"
+          anchor: prompt-在-cli-之间搬移时保留四件事
+      return:
+        zh-TW:
+          heading: "回到 Track A"
+          anchor: 回到-track-a
+        en:
+          heading: "Return to Track A"
+          anchor: return-to-track-a
+        zh-Hans:
+          heading: "回到 Track A"
+          anchor: 回到-track-a
+    resource_group_rowspans: [4, 5]

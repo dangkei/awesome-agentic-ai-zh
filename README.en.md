@@ -115,8 +115,8 @@ The two tracks are **not mutually exclusive** — most people start with A to ge
 
 | Stage | Topic | Key Content | Time |
 |---|---|---|---|
-| **A1** | [CLI Agent Intro & Selection](tracks/cli/A1-cli-intro.en.md) | 8-CLI comparison · install · first run | 1 wk |
-| **A2** | [CLI Workflow Patterns](tracks/cli/A2-cli-workflow.en.md) | CLAUDE.md · slash commands · multi-step decomposition | 1-2 wks |
+| **A1** | [CLI Agent Intro & Selection](tracks/cli/A1-cli-intro.en.md) | CLI agent selection · install · first run | 1 wk |
+| **A2** | [CLI Workflow Patterns](tracks/cli/A2-cli-workflow.en.md) | Project instructions · Skill · task decomposition | 1-2 wks |
 | **A3** | [Integration & Production](tracks/cli/A3-cli-production.en.md) | MCP-into-CLI · CI automation · cost / observability | 1-2 wks |
 | **+5** | [Stage 5 — Claude Code Ecosystem](stages/05-claude-code-ecosystem.en.md) (**Shared Hub**) | MCP · Skills · Plugins · Subagents; Track A reads 5.1-5.4 (5.5-5.7 optional) | 1-2 wks (Track A view) |
 | **+8** | [Stage 8 — Agent Interfaces](stages/08-agent-interfaces.en.md) (**Shared Hub**) | Computer Use · Browser Use · Code Sandbox; Track A reads Track A usage | 1-2 wks (Track A view) |
@@ -236,7 +236,7 @@ Common quick links, grouped by **scenario**:
 | Your situation | Where | What's there |
 |---|---|---|
 | Research workflow + multi-LLM delegation skill pair | [`RESOURCES.en.md` research workflow](RESOURCES.en.md#research-workflow-by-the-repo-maintainer) | Maintainer's own Claude Code research skill set |
-| CLI agent 8-way comparison + production combos | [`resources/cli-agents-guide.en.md`](resources/cli-agents-guide.en.md) | Track A's core reference, ~148 lines |
+| CLI agent identity & selection guide | [`resources/cli-agents-guide.en.md`](resources/cli-agents-guide.en.md) | Track A's core reference |
 | Schema design rules (must-read for tool calling) | [`resources/schema-design-cheatsheet.en.md`](resources/schema-design-cheatsheet.en.md) | 5 golden rules + 5 anti-patterns |
 
 ---
@@ -254,7 +254,7 @@ This repo is an AI learning document — if you've also curated great resources,
 
 PR process and style rules: [CONTRIBUTING.en.md](CONTRIBUTING.en.md) + [resources/style-guide.en.md](resources/style-guide.en.md).
 
-> 🤖 **New project links are auto-audited** — when a PR adds a new `github.com/owner/repo` link, a GitHub Action comments with its stars, license, archived status, and last-push, flagging archived / stale (>6 months) / unlicensed entries against the curation bar. Advisory only, never blocks — the maintainer decides what gets in (v1 runs on maintainer-branch PRs; fork PRs are skipped for now due to token scope).
+> 🤖 **Project links have two automated checks** — on maintainer branches, the comment bot reports stars, license, archive state, and last push for newly added repos; that layer is informational only. A separate read-only freshness gate runs on every PR, including forks, and checks each repo entry touched by the change. It blocks only hard contradictions such as 404/private, an outdated moved slug, calling an archived repo current, or an explicit license mismatch. Six months without a push is only a reminder; maintainers still decide what belongs.
 
 > 📅 **Want to see what shipped recently?** → [`CHANGELOG.md`](CHANGELOG.md) (last 14 days).
 > Internal phase rollout progress and launch checklist: [`.github/launch-checklist.md`](.github/launch-checklist.md) (maintainer-facing internal doc).

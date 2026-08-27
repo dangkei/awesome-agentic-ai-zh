@@ -115,8 +115,8 @@ cd awesome-agentic-ai-zh
 
 | Stage | 主題 | 關鍵內容 | 預估時程 |
 |---|---|---|---|
-| **A1** | [選一個 CLI Agent，開始用它做事（CLI Agent Intro & Selection）](tracks/cli/A1-cli-intro.md) | 8 主流 CLI 比較 · 安裝 · 第一次跑 | 1 週 |
-| **A2** | [建立可重複使用的 CLI 工作流程（CLI Workflow Patterns）](tracks/cli/A2-cli-workflow.md) | CLAUDE.md · slash command · 多步驟拆解 | 1-2 週 |
+| **A1** | [選一個 CLI Agent，開始用它做事（CLI Agent Intro & Selection）](tracks/cli/A1-cli-intro.md) | CLI agent 選擇 · 安裝 · 第一次跑 | 1 週 |
+| **A2** | [建立可重複使用的 CLI 工作流程（CLI Workflow Patterns）](tracks/cli/A2-cli-workflow.md) | 專案規則 · Skill · 任務拆解 | 1-2 週 |
 | **A3** | [把 CLI Agent 接進真實工作流程（Integration & Production）](tracks/cli/A3-cli-production.md) | MCP 接 CLI · CI 自動化 · cost / observability | 1-2 週 |
 | **+5** | [Stage 5 — Claude Code 生態](stages/05-claude-code-ecosystem.md)（**共用 hub**） | MCP · Skills · Plugins · Subagents、Track A 必看 5.1-5.4 / 選讀 5.5-5.7 | 1-2 週（Track A 視角）|
 | **+8** | [Stage 8 — Agent Interfaces](stages/08-agent-interfaces.md)（**共用 hub**）| Computer Use · Browser Use · Code Sandbox、Track A 視角看 Track A 怎麼用 | 1-2 週（Track A 視角）|
@@ -236,7 +236,7 @@ cd awesome-agentic-ai-zh
 | 你的狀況 | 去哪 | 內容 |
 |---|---|---|
 | 研究 workflow + multi-LLM delegation skill | [`RESOURCES.md` 研究工作流](RESOURCES.md#研究工作流本-repo-維護者出品) | 本 repo 維護者出品的 Claude Code 研究 skill 對 |
-| CLI agent 8 家對照 + production 搭配 | [`resources/cli-agents-guide.md`](resources/cli-agents-guide.md) | Track A 的核心參考、148 行 |
+| CLI agent 身分與選擇指南 | [`resources/cli-agents-guide.md`](resources/cli-agents-guide.md) | Track A 的核心參考 |
 | Schema 設計規則（tool calling 必看） | [`resources/schema-design-cheatsheet.md`](resources/schema-design-cheatsheet.md) | 5 條黃金規則 + 5 個 anti-pattern |
 
 ---
@@ -254,7 +254,7 @@ cd awesome-agentic-ai-zh
 
 PR 流程跟 style 規範請看 [CONTRIBUTING.md](CONTRIBUTING.md) 跟 [resources/style-guide.md](resources/style-guide.md)。
 
-> 🤖 **新增 project 的連結會自動過審核** — PR 一加新的 `github.com/owner/repo` 連結，一個 GitHub Action 會留言貼出它的 star 數、license、是否封存、最後更新，並對照策展標準標出已封存 / 停更（>6 個月）/ 無 license 的項目。純資訊、不擋 PR，收不收仍由 maintainer 決定（目前只在 maintainer 開的 branch 上跑，fork PR 因 token 限制暫略）。
+> 🤖 **Project 連結有兩層自動檢查** — maintainer branch 新增 repo 時，留言 bot 會貼出 stars、license、封存狀態與最後更新；這層只提供資訊。另一個 read-only freshness gate 會在所有 PR（包含 fork）檢查本次碰到的 repo entry，只有 404／搬家未更新／封存卻寫成現行／明示 license 衝突等硬矛盾會擋；單看半年沒更新只提醒，收不收仍由 maintainer 決定。
 
 > 📅 **想看最近 ship 了什麼** → [`CHANGELOG.md`](CHANGELOG.md)（最近 14 天）。
 > Maintainer 內部進度與 launch checklist 放在 [`.github/launch-checklist.md`](.github/launch-checklist.md)（內部文件）。

@@ -27,31 +27,48 @@
 | 草稿 | 草稿主題 | 最終歸屬 |
 |---|---|---|
 | A1 | CLI 入門 + 選擇 | → 最終 A1 |
-| A2 | Workflow（CLAUDE.md / slash command / 任務拆解 / portable prompt） | → 最終 A2 |
-| A3 | MCP 接 CLI | → 合進最終 A3 |
-| A4 | 多 CLI 並用 | → 合進最終 A3 |
-| A5 | Production CLI workflow（CI / cost / observability / plugin 打包） | → 合進最終 A3 |
+| A2 | Workflow（project instructions / Skill / 任務拆解 / portable prompt） | → 最終 A2 |
+| A3 | MCP 接 CLI | → 最終 A3 |
+| A4 | 多 CLI 並用 | → 移到最終 A1／A2 的工具比較與 portable prompt |
+| A5 | Production CLI workflow（CI / cost / observability / team sharing） | → 最終 A3 |
 
 合併邏輯：
 
-- 草稿 A3 + A4 + A5 都是「**把 CLI 跟外部系統 / 流程接起來**」這同一件事的不同面向，砍 3 為 1 不會切碎概念
+- 草稿 A3 + A5 都是「**把 CLI 安全接到外部系統 / 團隊流程**」這同一件事，合併後仍是一條完整主線
+- 草稿 A4 的工具比較放到 A1，跨工具可攜做法放到 A2；A3 不先教同時放出多個 agent，避免初學者在學會安全界線前把流程變複雜
 - 草稿 A1 邊界清楚（入門 + 選擇），保留為最終 A1
 - 草稿 A2 邊界清楚（一個人在 CLI 內部如何工作），保留為最終 A2
 
 最終 3 個 stage：
 
 - **A1**：入門 + 選擇（CLI 安裝、認證、第一個任務）
-- **A2**：Workflow Patterns（CLAUDE.md / slash command / 多步拆解 / portable prompt）
-- **A3**：Integration & Production（MCP 接 CLI、多 CLI 並用、CI 自動化、cost / observability、plugin 打包）
+- **A2**：Workflow Patterns（project instructions / Skill / 多步拆解 / portable prompt）
+- **A3**：Integration & Production（單一受限 MCP、唯讀 PR CI、usage / cost receipt、版本化 team Skill）
 
 判準：**3 個 stage 邊界清楚、不互相浸蝕**，每個 stage 對應一個明確的「我能跑出什麼」outcome。
+
+### A2 的固定閱讀形狀
+
+- 第一遍只教「專案規則像共同守則、Skill 像按需操作卡、單次 prompt 像臨時交代」，並保留 CLI-5 至 CLI-8 的標題、anchor、成果與 A3 入口。
+- CLI-5 用「用途／禁止事項／驗證指令／交付格式」四欄做最小規則卡；不把 persona 或行數門檻當成跨 CLI 通則。
+- CLI-6 教目前的 `SKILL.md`，只在相容說明提 `.claude/commands/`。核心內容可以共用，工具專屬的資料夾、frontmatter、permission 與 tool 名稱分開說。
+- 時間、先備條件、完整工具位置、CLI-7／CLI-8 步驟、multi-agent、疑難排解與完整資源表預設收合。
+- 完整資源表按語意分組；每組一個 `<tbody>`，分類欄用真正 `rowspan` 合併。三語的 rowgroup、URL、命令、日期與安全限制必須一致。
+
+### A3 的固定閱讀形狀
+
+- 第一遍先用三個白話詞與一條安全階梯說清楚主線：唯讀 → 最小權限 → 示範 repo → 人工檢查 → 最後才考慮寫入。
+- CLI-9 至 CLI-12 的標題、anchor、一句話成果與最短路徑留在可見區；時間、閱讀、完整步驟、疑難排解與 playbook 放進預設關閉的 `<details>`。
+- Playbook 4 的標題與成果留在可見區，保護既有跨頁深連結；多 agent、fallback 與 failure injection 的理論導回 Stage 7.5，不在 A3 重寫一次。
+- 完整資源表固定為 18 筆、五個語意群組，`rowspan` 為 `4／5／4／3／2`。同類型只顯示一次分類名稱，不放 stars、排行榜或會自然變舊的數量。
+- A3 的自動化預設只讀、最小權限、可留下 receipt，且必須有人檢查。不能把自動 merge、push、deploy 或未受限的 MCP 寫成初學者第一步。
 
 ### 為什麼 Stage 5 特別放在「兩軌共用」
 
 Stage 5（Claude Code 生態）兩條軌都會碰到：
 
-- Track A：A2 用 5.1（Claude Code 基礎）；A3 用 5.2（MCP）+ 選擇性用到 5.3（Skills）跟 5.4（Plugins）——A3 的 動手練習 CLI-12 會教 plugin 打包。讀的角度是「**怎麼用 Claude Code 把工作做好**」
-- Track B：把整個 Stage 5 當「**Claude Code 內部運作**」的深度學，從 5.1 完整走到 5.4
+- Track A：A2 以多家官方 project-instructions／Skill 文件為主，Stage 5.1／5.3 只作 Claude Code 延伸；A3 用 5.2（MCP）+ 選擇性用到 5.3（Skills）跟 5.4（Plugins）。A3 的 CLI-12 教可版本化的 team Skill；plugin 是 Claude Code 的延伸選項，不假裝成每個 CLI 都通用的打包格式。讀的角度是「**怎麼用 CLI agent 把工作做好**」
+- Track B：把整個 Stage 5 當「**Claude Code 內部運作**」的深度學，從 5.1 完整走到 5.7
 
 但兩條軌**不需要重新讀整份 Stage 5**——Track A 看「用法」、Track B 看「內部結構」。同一份內容，兩種讀法。
 
@@ -99,7 +116,7 @@ stage 的價值 = 讀者學完後**能回答這個問題**。
 |---|---|---|
 | **0** 基礎準備 | 「我的開發環境準備好了嗎？」 | 4 個 動手練習 self-test |
 | **1** LLM 入門 | 「LLM 是什麼、token 怎麼算、不同 LLM 的差別？」 | 從 API call 到本地 LLM，含 from-scratch 訓練 |
-| **2** Prompt 設計 | 「怎麼讓 LLM 照我的意思做事？」 | system / few-shot / CoT / DSPy |
+| **2** Prompt 設計 | 「怎麼讓 LLM 照我的意思做事，而且知道修改有沒有用？」 | 四格 prompt / few-shot / 固定 eval / 一次只改一件事 |
 | **3** ⭐ Tool Use & Agent 入門 | 「怎麼讓 LLM 呼叫外部工具？」 | function calling + ReAct + 5 個動手練習 必跑 |
 | **4** Agent 框架 | 「哪個 framework 該學、為什麼？」 | LangGraph / AutoGen / CrewAI / Smolagents 對比 |
 | **5** ⭐⭐ Claude Code 生態 | 「Claude Code 生態系怎麼吃？」 | MCP / Skills / Plugins / Marketplace 4 個 sub-stage |
@@ -114,22 +131,60 @@ stage 的價值 = 讀者學完後**能回答這個問題**。
 
 ## Stage 結構（dominant pattern，非絕對 invariant）
 
-多數 stage 用以下結構（Stage 0 / 5 / 6 / 7 / 7.5 / 8 有 documented 例外，見後）：
+多數 stage 保留以下 section；**呈現順序採漸進式揭露**。Stage 1 是第一個完成遷移的 pilot，其他 stage 在各自內容更新時逐章遷移，不要求在同一個 PR 一次重寫：
+
+Stage 2 的固定主線是「目標／資料／規則／輸出 → Zero-Shot／One-Shot／Few-Shot → Chain-of-Thought 的正確邊界 → 六筆固定案例 → 一次只改一件事 → 比較分數」。程式碼、模型比較、安全補充與 18 筆完整資源表預設收合。CoT 必須先用白話解釋，但不當成要求模型公開完整內部推理的通用步驟。
 
 ```
-1. ⏱ 時間估算
+1. 1-2 句核心問題
 2. ## 📌 學習目標
-3. ## 🚪 進入條件 （Stage 1-4 有；Stage 6 / 7 省略，因為 Stage 5 已給足前置）
-4. ## 📚 必修閱讀
-5. ## 🛠 動手練習
-6. ## 🎯 精選 Projects
-7. ## ✅ 進 Stage N+1 前的自我檢查
+3. 該 stage 的核心詞 / 最短選擇路徑
+4. ## 🚪 進入條件 + ⏱ 時間估算（預設收合；Stage 6 / 7 可省略）
+5. ## 📚 必修閱讀（清單預設收合）
+6. ## 🛠 動手練習（核心練習先出現，延伸練習細節收合）
+7. ## 🎯 精選 Projects（一個推薦項目先出現，其餘分級收合）
+8. ## ✅ 進 Stage N+1 前的自我檢查
 ```
+
+### 漸進式揭露
+
+- 不展開任何 `<details>` 時，讀者仍要看得懂「這章要學什麼、先做哪一題、成功長什麼樣」。
+- 核心路標的 icon 必須保留並保持一致：`📌` 學習目標、`📚` 必修閱讀、`🛠` 動手練習、`🎯` 精選 Projects、`✅` 自我檢查。可調整白話標題，但不能在精簡時拿掉路標。
+- 動手練習的第一個動作優先給可直接複製、貼上或執行的最小成品。不要先叫初學者抄空白模板；空白模板只適合放在讀者看過成品之後的自行改寫步驟。
+- 時間、先備工具、費用、長表格、補充原理、疑難排解與延伸清單預設收合；`<details>` 不加 `open`。
+- 可被其他頁面深連結的 heading 必須留在 `<details>` 外。標題後先給一句成果，再收合詳細步驟，否則瀏覽器會跳到一個仍然看不見的位置。
+- 雙路徑練習仍以 Ollama Path A 為主要可執行路徑，但不再一律展開。練習標題、成果與第一個動作保持可見；只有在 Path A 是讀者眼前唯一要做的事，而且展開後內容很短時，才可使用 `open`。長程式碼與疑難排解預設收合。Anthropic Path B 仍預設收合；外層若已是延伸練習的收合區，內層不得預設展開。
+
+### Reader UX ratchet
+
+- `scripts/reader-ux-pages.yml` 只登記已完成三語遷移與人工複查的頁面。未遷移頁面不會因新規則一次全部失敗。
+- `scripts/check-reader-ux.py` 使用保守的 source-level proxy：計算第一次開頁時可見 Markdown 的非空白字元。預設展開內容與可見 fenced code 會計入；HTML comment 與收合內容不計入。這是可重複的 ratchet，不宣稱等於瀏覽器 DOM 字數。
+- 每頁分別設定三語字數上限、預設展開數量、必須留在 `<details>` 外的精確 heading／anchor，以及分組資源表的 `rowspan`。完成一次精簡後只能維持或收緊，不可靜默放寬。
+- 時間、先備條件、環境、費用、預算、必修閱讀、選修、補充資料、疑難排解與完整資源表不得預設展開。
+- Gate 只證明可量測的結構沒有倒退。第一次讀者能不能用自己的話說出下一步，仍要在人工審查確認。
+
+### 全站白話規則（ELI5）
+
+這是整份學習地圖的共同 gate，不是 Stage 0 的特殊語氣。目標是讓五歲小孩也能跟得上「現在要做什麼」，但不把技術內容寫錯或寫成幼稚口吻。
+
+- 第一次使用技術詞時，先用白話說用途，再保留正確術語；例如「讓程式拿資料的入口（API）」。
+- 漸進式揭露只能收起次要細節。後文、練習或 self-check 會用到的核心名詞，必須留在可見主線，並在第一次出現時用白話解釋；不能為了縮短頁面而刪掉。
+- 一句只說一件事，一個步驟只要求一個主要動作。長句拆開，縮寫與 jargon 不可在可見主線中突然出現。
+- 指令、檔名、錯誤碼、模型名稱、價格與數字保持精確；ELI5 不能拿來刪除必要條件或安全提醒。
+- 若一個概念需要多段說明，主線先留一句「它有什麼用」與下一步，完整原理放進預設收合的 `<details>`。
+- Review 時不只問內容是否正確，也要問第一次來的讀者能否在不展開選單時，說出下一步與完成標準。
+
+### 易變資訊與查核日期
+
+- 模型名稱、價格、context、授權、preview / GA / deprecated 狀態，只能引用供應商正式文件、release notes 或官方 model card。
+- 有易變資訊的頁面同時顯示 ISO 查核日期，並放置 `freshness` HTML comment；marker 要寫繁中 canonical 路徑、`verified_on`、scope 與最大查核週期，且三語完全相同。
+- 查核日期只表示「那天逐項看過」，不是永久正確保證。超過建議週期由排程提出 warning；缺少 marker、格式錯誤、未來日期或三語不一致則由 gate 阻擋。
+- 後續每個 stage 使用獨立 PR 完成事實查核、繁中定稿、三語複查與 review，不建立跨全站的大型 freshness diff。
 
 **已知例外**：
 
-- **Stage 0**：prerequisite gateway，沒有完整結構（見 「Stage 0 為什麼可以 skip」）
-- **Stage 5**：分 4 個 sub-stage（5.1-5.4），每個 sub-stage 各有自己的 學習目標 / 必修閱讀 / 動手練習 / 精選 Projects
+- **Stage 0**：prerequisite gateway，使用可見的跳過判斷、單一整合練習與短版完成檢查；時間、環境、補充練習、名詞與資源預設收合（見「Stage 0 為什麼可以 skip」）
+- **Stage 5**：分 7 個核心 sub-stage（5.1-5.7）+ 5.8 SDK（選修、包成產品或服務才需要），每個 sub-stage 各有自己的 學習目標 / 必修閱讀 / 動手練習 / 精選 Projects
 - **Stage 6 / 7**：直接跳過 進入條件 section（前面 stage 已隱含 prerequisite）
 - **Stage 7.5**：reading-map（進階概念 + reading path），沒有 動手練習、只有輕量 self-check——是 production 之後的 frontier 概念地圖，不寫 code
 - **Stage 8**：跟 Stage 5 一樣是兩軌共用 hub，分 3 層 interface（Computer Use / Browser Use / Code Sandbox）+ Safety / Security section，各層有自己的工具與練習
@@ -149,18 +204,20 @@ stage 的價值 = 讀者學完後**能回答這個問題**。
 - 3-5 個 link（多會讀不完、少會 under-cover）
 - 該 stage 開始前 / 中 / 後都行，但「不讀就跟不上」是判準
 - 偏好官方 doc / 經典論文，不放長部落格
+- section heading 與一句閱讀目的保持可見；連結清單預設收合，避免讀者還沒開始實作就先撞上資源牆
 
 ### 動手練習 Projects
 - 通常 3-5 個（Stage 1 / 3 因為要 cover 多個概念，會到 5-6 個）
 - 每個都有具體成功標準（跑出某個輸出、看到某個錯誤等）
 - **必須是「不動手就學不會」的東西**——光讀光看不算
 - 動手練習 跟 self-check 是 **conceptual coverage 對應**（不是 1:1 編號對應）——跑過 動手練習 後，self-check 整體應該能過；單一條 self-check 可能對應到多個 動手練習
-- Stage 5 因為 sub-section（5.1-5.4）結構，動手練習 分散在各 sub-section
+- Stage 5 因為 sub-section（5.1-5.8）結構，動手練習 分散在各 sub-section
 
 ### 精選 Projects
 - 跑完 動手練習 後的延伸學習
 - 每個 entry 照 [style guide](../resources/style-guide.md) 1 schema
 - 數量：通常 7-15 個（Stage 5 例外，20 個分散在 4 個 sub-section）
+- 分類型資源表若同一分類連續出現兩列以上，每個分類使用獨立 `<tbody>`，分類欄再以 `scope="rowgroup"` 與 `rowspan` 合併；欄位表頭使用 `scope="col"`。這讓螢幕閱讀器與視覺版面讀到同一組關係，也不讓讀者重複掃描相同標籤。不同分類不可只因欄位文字相同就跨組合併。
 
 ### 自我檢查
 - **measurable**——能 verify 的不是「了解 X」
@@ -266,9 +323,9 @@ Repo 名字是 `awesome-agentic-ai-zh`，受眾偏 Claude Code 使用者。Stage
 Stage 0 不是 stage——它是 prerequisite gateway。
 
 - Python / git / CLI / JSON 已經會的人 → 直接 Stage 1
-- 不會的人 → Stage 0 不是要從零教 Python，是給「我該不該學這 4 樣才能開始」的 self-test，順便給快速 reference 連結
+- 不會的人 → 用一個不需帳號或 token 的小工具，同時練 Python、API、JSON、CLI 與 Git
 
-所以 Stage 0 沒有完整的學習目標 / 動手練習 / self-check structure——只有「skip 條件」+ 「資源連結」。它存在是為了**讓真的初學者不會在後面 stage 卡住**，但不假設讀者要從這裡完整走完。
+Stage 0 的可見主線固定為「skip 條件 → 4 個學習目標 → 1 個整合練習 → 短版完成檢查」。時間、環境、分項補充、名詞與 18 個學習資源放進預設收合的 `<details>`。它存在是為了**讓真的初學者不會在後面 stage 卡住**，但不把這個 repo 變成完整的 Python 或 Git 教科書。
 
 ---
 

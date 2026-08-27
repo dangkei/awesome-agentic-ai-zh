@@ -56,6 +56,16 @@ GPT, Claude, Gemini — models that take text in and produce text out. Fundament
 
 📍 Detail: [Stage 1](../stages/01-llm-basics.en.md)
 
+### Model Provider / Provider API
+
+**The direct door to a model company.** Examples include Anthropic API, OpenAI API, and Gemini API. You choose a model and send a prompt; the provider returns the result and charges you. It provides a model service, but it is not a CLI agent that reads and writes files on your computer.
+
+### LLM Router / API Router
+
+**One entry point that forwards requests to multiple models or backends.** [OpenRouter](https://openrouter.ai/docs/faq) is an example: through one API and billing entry point, you can choose different models and, depending on your settings, use provider routing or fallback. A Router is not a model, and it is not a coding agent such as OpenCode or Pi.
+
+📍 Five identities compared: [Track A A1](../tracks/cli/A1-cli-intro.en.md)
+
 ### Token
 
 LLMs see **tokens** (sub-word units), not characters. Roughly 1 English word ≈ 1.3 tokens, 1 Chinese character ≈ 1.5–2 tokens. LLM pricing and context windows are measured in tokens. "1M-token context" ≈ 750k English words.
@@ -78,16 +88,16 @@ Put "a few worked examples" in the prompt for the LLM to copy — the only diffe
 
 - **Zero-shot** (0 examples): just ask, no examples at all.
 - **One-shot** (1 example): give **1** input → output example first, then ask.
-- **Few-shot** (a handful): give **2–5** input → output examples first. **Few-shot usually improves accuracy a lot**, especially for strict formatting.
+- **Few-shot** (a handful): give **2–5** input → output examples first. It can show the format and boundary cases, but whether it helps must be checked with a fixed eval.
 
 ### Chain-of-Thought (CoT)
 
-Make the LLM "think before answering" — have it output the reasoning process before the conclusion. **Two common forms**:
+Early prompting techniques asked the LLM to write intermediate reasoning before the answer. Two common research forms are:
 
-- **Few-shot CoT** ([Wei et al. 2022](https://arxiv.org/abs/2201.11903)): put a few examples with reasoning steps into the prompt, and the LLM imitates that style of thinking
-- **Zero-shot CoT** ([Kojima et al. 2022](https://arxiv.org/abs/2205.11916)): add "Let's think step by step" at the end of the prompt to trigger a reasoning trace
+- **Few-shot CoT** (original paper, [Wei et al. 2022](https://arxiv.org/abs/2201.11903)): put a few examples with reasoning steps into the prompt, and the LLM imitates the reasoning
+- **Zero-shot CoT** ([Kojima et al. 2022](https://arxiv.org/abs/2205.11916)): add "Let's think step by step" at the end of the prompt.
 
-**Accuracy usually improves**, at the cost of more tokens. Few-shot usually beats zero-shot.
+Do not treat outputting a full chain of thought as a general requirement now. Reasoning models usually reason internally. When you need to check the result, ask for **a short, verifiable reason after the final answer**. Which wording works better must be compared with the same eval.
 
 ---
 
@@ -275,7 +285,7 @@ Package multiple Skills + slash commands + hooks + MCP configs into one shippabl
 
 ### Slash Command
 
-Commands inside Claude Code starting with `/` (`/help`, `/compact`, `/plan`, etc.). Custom-definable — drop a prompt into `.claude/commands/<name>.md` and it becomes `/name`.
+Commands inside Claude Code that start with `/`, such as `/help`, `/compact`, and `/plan`. Older projects may keep a custom prompt in `.claude/commands/<name>.md`; that is a compatibility path. For a new reusable workflow, use `.claude/skills/<name>/SKILL.md`.
 
 ### CLAUDE.md
 
@@ -313,11 +323,11 @@ How to set up: put frontmatter + system prompt + tool whitelist in `.claude/agen
 
 ## 6. Production / Eval / Cost
 
-### Eval (Evaluation Framework)
+### Eval (Evaluation)
 
-Run a test set against your agent and quantify accuracy / latency / cost. **A production agent without eval has no tests.** Common: promptfoo, LangSmith, langfuse evals.
+Use a fixed test case set to check a prompt or agent. The smallest eval is like a small answer card: the same questions, clear success conditions, and a rerun after every change. As it grows, it can also record accuracy, latency, and cost. Common tools include promptfoo, LangSmith, and Langfuse evals.
 
-📍 Detail: [Stage 7](../stages/07-multi-agent-production.en.md)
+📍 Getting started: [Stage 2](../stages/02-prompt-engineering.en.md); full eval harness: [Stage 7](../stages/07-multi-agent-production.en.md)
 
 ### Observability
 
@@ -359,17 +369,17 @@ Simon Willison's framing: an agent becomes exploitable when it has all three of 
 
 ### CLI Agent
 
-Agents that run in a terminal (Claude Code, Codex, Aider, Gemini CLI, etc.). Versus IDE-bound (Cursor, Continue) or web-based (ChatGPT, Claude.ai).
+An agent / harness that runs in a terminal and, within the scope you allow, reads files, edits files, and runs commands (Claude Code, Codex, OpenCode, Pi, Aider, Gemini CLI, etc.). **It is the workbench, not the LLM inside it.** The same CLI may be tied to one model ecosystem or let you switch providers.
 
 📍 Detail: [Track A A1](../tracks/cli/A1-cli-intro.en.md), [`resources/cli-agents-guide.en.md`](cli-agents-guide.en.md)
 
 ### BYO API Key (Bring Your Own)
 
-Tool that supports user-provided API keys instead of bundled subscriptions. Aider / OpenCode / goose are BYO; Claude Code / Codex default to subscriptions.
+Tools that let you provide your own provider API key instead of using only the tool’s built-in subscription sign-in. Aider, OpenCode, goose, and Pi can connect to one or more providers; Claude Code and Codex also have subscription or API authentication paths listed in their official docs. Supported methods change, so read the tool’s official authentication docs before use.
 
 ### Local LLM / On-Device
 
-Models running on your own hardware (Ollama, llama.cpp, MLX, LocalAI, etc.). Data stays local — privacy-friendly but capabilities lag frontier models.
+Models running on your own machine. Ollama, llama.cpp, MLX, and LocalAI are **local runtimes**: they run the model and are not coding agents. Data stays off the cloud for this workflow only when the model, tools, and data paths all remain local and no cloud service is called; test capability and speed with your own task and hardware.
 
 📍 Detail: [Stage 1](../stages/01-llm-basics.en.md)
 
